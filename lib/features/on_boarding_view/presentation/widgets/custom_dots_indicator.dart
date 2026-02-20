@@ -31,7 +31,7 @@ class DotsIndicator extends StatelessWidget {
               borderRadius: BorderRadius.circular(4),
               color: isActive
                   ? const Color(0xff0957DE)
-                  : const Color(0xff0957DE).withOpacity(0.2),
+                  : const Color(0x330957DE),
             ),
           );
         }),

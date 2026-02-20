@@ -83,81 +83,81 @@ class _PopularDoctorCard extends StatelessWidget {
           border: Border.all(color: AppColors.border),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.04),
+              color: Colors.black.withValues(alpha: 0.04),
               blurRadius: 8,
               offset: const Offset(0, 2),
             ),
           ],
         ),
         child: Row(
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(12.r),
-            child: Image.asset(
-              doctor.imageAsset,
-              width: 70.w,
-              height: 70.h,
-              fit: BoxFit.cover,
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(12.r),
+              child: Image.asset(
+                doctor.imageAsset,
+                width: 70.w,
+                height: 70.h,
+                fit: BoxFit.cover,
+              ),
             ),
-          ),
-          SizedBox(width: 12.w),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  doctor.name,
-                  style: AppStyles.styleMedium14.copyWith(fontSize: 15.sp),
-                ),
-                SizedBox(height: 2.h),
-                Text(
-                  doctor.specialty,
-                  style: AppStyles.styleRegular12.copyWith(
-                    color: AppColors.textSecondary,
+            SizedBox(width: 12.w),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    doctor.name,
+                    style: AppStyles.styleMedium14.copyWith(fontSize: 15.sp),
                   ),
-                ),
-                SizedBox(height: 6.h),
-                Row(
-                  children: [
-                    Icon(
-                      Icons.star_rounded,
-                      color: AppColors.star,
-                      size: 14.sp,
+                  SizedBox(height: 2.h),
+                  Text(
+                    doctor.specialty,
+                    style: AppStyles.styleRegular12.copyWith(
+                      color: AppColors.textSecondary,
                     ),
-                    SizedBox(width: 4.w),
-                    Text(
-                      '${doctor.rating} (${doctor.reviews} Reviews)',
-                      style: AppStyles.styleRegular12.copyWith(
-                        color: AppColors.textSecondary,
-                        fontSize: 11.sp,
+                  ),
+                  SizedBox(height: 6.h),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.star_rounded,
+                        color: AppColors.star,
+                        size: 14.sp,
                       ),
-                    ),
-                  ],
+                      SizedBox(width: 4.w),
+                      Text(
+                        '${doctor.rating} (${doctor.reviews} Reviews)',
+                        style: AppStyles.styleRegular12.copyWith(
+                          color: AppColors.textSecondary,
+                          fontSize: 11.sp,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Icon(
+                  doctor.isFavorite ? Icons.favorite : Icons.favorite_border,
+                  color: doctor.isFavorite
+                      ? AppColors.accent
+                      : AppColors.textLight,
+                  size: 20.sp,
+                ),
+                SizedBox(height: 8.h),
+                Text(
+                  doctor.fee,
+                  style: AppStyles.styleMedium14.copyWith(
+                    color: AppColors.primary,
+                    fontSize: 13.sp,
+                  ),
                 ),
               ],
             ),
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Icon(
-                doctor.isFavorite ? Icons.favorite : Icons.favorite_border,
-                color: doctor.isFavorite
-                    ? AppColors.accent
-                    : AppColors.textLight,
-                size: 20.sp,
-              ),
-              SizedBox(height: 8.h),
-              Text(
-                doctor.fee,
-                style: AppStyles.styleMedium14.copyWith(
-                  color: AppColors.primary,
-                  fontSize: 13.sp,
-                ),
-              ),
-            ],
-          ),
-        ],
+          ],
         ),
       ),
     );

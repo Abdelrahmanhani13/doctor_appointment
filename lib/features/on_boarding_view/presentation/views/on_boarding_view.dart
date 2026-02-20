@@ -69,7 +69,9 @@ class _OnBoardingViewState extends State<OnBoardingView> {
 
                   /// Dark Overlay
                   Positioned.fill(
-                    child: Container(color: Colors.black.withOpacity(0.2)),
+                    child: Container(
+                      color: Colors.black.withValues(alpha: 0.2),
+                    ),
                   ),
 
                   /// Bottom White Container (FIXED VERSION)

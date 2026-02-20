@@ -8,6 +8,7 @@ import 'package:doctor_appointment/features/home/presentation/widgets/sort_botto
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 
 class CategoryDetailView extends StatelessWidget {
   final String? categoryName;
@@ -119,7 +120,7 @@ class CategoryDetailView extends StatelessWidget {
       backgroundColor: Colors.white,
       elevation: 0,
       leading: GestureDetector(
-        onTap: () => Navigator.pop(context),
+        onTap: () => context.pop(),
         child: Container(
           margin: EdgeInsets.all(8.w),
           decoration: BoxDecoration(

@@ -30,7 +30,7 @@ class BannerWidget extends StatelessWidget {
               height: 130.h,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.white.withOpacity(0.08),
+                color: Colors.white.withValues(alpha: 0.08),
               ),
             ),
           ),
@@ -42,7 +42,7 @@ class BannerWidget extends StatelessWidget {
               height: 90.h,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.white.withOpacity(0.06),
+                color: Colors.white.withValues(alpha: 0.06),
               ),
             ),
           ),
@@ -80,7 +80,7 @@ class BannerWidget extends StatelessWidget {
                   Text(
                     'Your doctor, one\ntap away.',
                     style: AppStyles.styleRegular14.copyWith(
-                      color: Colors.white.withOpacity(0.85),
+                      color: Colors.white.withValues(alpha: 0.85),
                       fontSize: 12.sp,
                     ),
                   ),

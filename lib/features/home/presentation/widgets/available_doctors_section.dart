@@ -94,62 +94,64 @@ class _AvailableDoctorCard extends StatelessWidget {
           border: Border.all(color: AppColors.border),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.04),
+              color: Colors.black.withValues(alpha: 0.04),
               blurRadius: 8,
               offset: const Offset(0, 2),
             ),
           ],
         ),
         child: Column(
-        children: [
-          Expanded(
-            child: ClipRRect(
-              borderRadius: BorderRadius.vertical(top: Radius.circular(16.r)),
-              child: Image.asset(
-                doctor.imageAsset,
-                width: double.infinity,
-                fit: BoxFit.cover,
+          children: [
+            Expanded(
+              child: ClipRRect(
+                borderRadius: BorderRadius.vertical(top: Radius.circular(16.r)),
+                child: Image.asset(
+                  doctor.imageAsset,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
-          ),
-          Padding(
-            padding: EdgeInsets.all(8.w),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  doctor.name,
-                  style: AppStyles.styleMedium14.copyWith(fontSize: 11.sp),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                SizedBox(height: 2.h),
-                Text(
-                  doctor.specialty,
-                  style: AppStyles.styleRegular12.copyWith(
-                    color: AppColors.textSecondary,
-                    fontSize: 10.sp,
+            Padding(
+              padding: EdgeInsets.all(8.w),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    doctor.name,
+                    style: AppStyles.styleMedium14.copyWith(fontSize: 11.sp),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
-                ),
-                SizedBox(height: 4.h),
-                Row(
-                  children: [
-                    Icon(
-                      Icons.star_rounded,
-                      color: AppColors.star,
-                      size: 11.sp,
+                  SizedBox(height: 2.h),
+                  Text(
+                    doctor.specialty,
+                    style: AppStyles.styleRegular12.copyWith(
+                      color: AppColors.textSecondary,
+                      fontSize: 10.sp,
                     ),
-                    SizedBox(width: 2.w),
-                    Text(
-                      '${doctor.rating}',
-                      style: AppStyles.styleRegular12.copyWith(fontSize: 10.sp),
-                    ),
-                  ],
-                ),
-              ],
+                  ),
+                  SizedBox(height: 4.h),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.star_rounded,
+                        color: AppColors.star,
+                        size: 11.sp,
+                      ),
+                      SizedBox(width: 2.w),
+                      Text(
+                        '${doctor.rating}',
+                        style: AppStyles.styleRegular12.copyWith(
+                          fontSize: 10.sp,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
         ),
       ),
     );

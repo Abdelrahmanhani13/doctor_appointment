@@ -57,7 +57,7 @@ class DoctorDetailsView extends StatelessWidget {
           top: 48.h,
           left: 20.w,
           child: GestureDetector(
-            onTap: () => Navigator.pop(context),
+            onTap: () => context.pop(),
             child: Container(
               width: 36.w,
               height: 36.h,

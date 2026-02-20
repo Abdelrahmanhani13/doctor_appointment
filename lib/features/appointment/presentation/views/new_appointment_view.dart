@@ -37,7 +37,7 @@ class _NewAppointmentViewState extends State<NewAppointmentView> {
         backgroundColor: Colors.white,
         elevation: 0,
         leading: GestureDetector(
-          onTap: () => Navigator.pop(context),
+          onTap: () => context.pop(),
           child: Container(
             margin: EdgeInsets.all(8.w),
             decoration: BoxDecoration(

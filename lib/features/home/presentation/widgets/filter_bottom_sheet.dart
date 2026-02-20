@@ -154,7 +154,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
             activeTrackColor: AppColors.primary,
             inactiveTrackColor: AppColors.border,
             thumbColor: AppColors.primary,
-            overlayColor: AppColors.primary.withOpacity(0.1),
+            overlayColor: AppColors.primary.withValues(alpha: 0.1),
             trackHeight: 4,
             thumbShape: RoundSliderThumbShape(enabledThumbRadius: 8.r),
           ),

@@ -13,7 +13,7 @@ class Root extends StatefulWidget {
 
 class _RootState extends State<Root> {
   int _currentIndex = 0;
-  final List<Widget> _widgetOptions = [
+  static const List<Widget> _widgetOptions = [
     HomeView(),
     FavoriteView(),
     CalendarView(),
@@ -22,7 +22,7 @@ class _RootState extends State<Root> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _widgetOptions[_currentIndex],
+      body: IndexedStack(index: _currentIndex, children: _widgetOptions),
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(
@@ -45,11 +45,9 @@ class _RootState extends State<Root> {
         currentIndex: _currentIndex,
         selectedItemColor: Color(0xff226CEB),
         // ignore: deprecated_member_use
-        unselectedItemColor: Color(0xff226CEB).withOpacity(0.2),
+        unselectedItemColor: Color(0xff226CEB).withValues(alpha: 0.2),
         onTap: _changeItem,
-        unselectedIconTheme: IconThemeData(
-          color: Color(0xff226CEB).withOpacity(0.2),
-        ),
+        unselectedIconTheme: const IconThemeData(color: Color(0x33226CEB)),
       ),
     );
   }
