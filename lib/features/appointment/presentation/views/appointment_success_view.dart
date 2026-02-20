@@ -1,0 +1,106 @@
+import 'package:doctor_appointment/core/utils/app_colors.dart';
+import 'package:doctor_appointment/core/utils/app_styles.dart';
+import 'package:doctor_appointment/core/utils/go_router.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+
+class AppointmentSuccessView extends StatelessWidget {
+  const AppointmentSuccessView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 32.w),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Spacer(),
+              // Success icon
+              Container(
+                width: 100.w,
+                height: 100.w,
+                decoration: BoxDecoration(
+                  color: AppColors.green.withOpacity(0.1),
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(
+                  Icons.check_circle_rounded,
+                  color: AppColors.green,
+                  size: 60.sp,
+                ),
+              ),
+              SizedBox(height: 32.h),
+              Text(
+                'Congratulations !',
+                style: AppStyles.styleSemiBold22.copyWith(fontSize: 22.sp),
+              ),
+              SizedBox(height: 12.h),
+              RichText(
+                textAlign: TextAlign.center,
+                text: TextSpan(
+                  style: AppStyles.styleRegular14.copyWith(
+                    color: AppColors.textSecondary,
+                    height: 1.6,
+                  ),
+                  children: [
+                    const TextSpan(
+                      text: 'Laith mahdi, your appointment with\n',
+                    ),
+                    TextSpan(
+                      text: 'Dr. Ayesha Rahman',
+                      style: AppStyles.styleMedium14.copyWith(
+                        color: AppColors.textPrimary,
+                      ),
+                    ),
+                    const TextSpan(text: ' has been booked.'),
+                  ],
+                ),
+              ),
+              SizedBox(height: 32.h),
+              // Date & Time
+              _infoRow(Icons.calendar_today_outlined, '10 Nov, 2023'),
+              SizedBox(height: 12.h),
+              _infoRow(Icons.access_time_rounded, '10:00'),
+              const Spacer(),
+              // Button
+              ElevatedButton(
+                onPressed: () => context.go(AppRouter.kRoot),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.primary,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(14.r),
+                  ),
+                  minimumSize: Size(double.infinity, 52.h),
+                  elevation: 0,
+                ),
+                child: Text(
+                  'See Appointment',
+                  style: AppStyles.styleSemiBold16,
+                ),
+              ),
+              SizedBox(height: 32.h),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _infoRow(IconData icon, String text) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Icon(icon, color: AppColors.primary, size: 18.sp),
+        SizedBox(width: 8.w),
+        Text(
+          text,
+          style: AppStyles.styleMedium14.copyWith(color: AppColors.textPrimary),
+        ),
+      ],
+    );
+  }
+}
