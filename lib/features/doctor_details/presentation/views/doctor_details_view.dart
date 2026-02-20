@@ -1,14 +1,16 @@
 import 'package:doctor_appointment/core/utils/app_colors.dart';
 import 'package:doctor_appointment/core/utils/app_styles.dart';
 import 'package:doctor_appointment/features/home/data/models/doctor_model.dart';
+import 'package:doctor_appointment/features/doctor_details/presentation/widgets/doctor_info_widget.dart';
+import 'package:doctor_appointment/features/doctor_details/presentation/widgets/doctor_stats_widget.dart';
+import 'package:doctor_appointment/features/doctor_details/presentation/widgets/doctor_working_time_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-class DoctorDetailView extends StatelessWidget {
+class DoctorDetailsView extends StatelessWidget {
   final DoctorModel doctor;
-
-  const DoctorDetailView({super.key, required this.doctor});
+  const DoctorDetailsView({super.key, required this.doctor});
 
   @override
   Widget build(BuildContext context) {
@@ -21,10 +23,12 @@ class DoctorDetailView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 _buildHeader(context),
-                _buildDoctorInfo(),
-                _buildStats(),
+                DoctorInfoWidget(doctor: doctor),
+                const DoctorStatsWidget(),
+                SizedBox(height: 20.h),
                 _buildAbout(),
-                _buildWorkingTime(),
+                SizedBox(height: 20.h),
+                const DoctorWorkingTimeWidget(),
                 SizedBox(height: 100.h),
               ],
             ),
@@ -38,7 +42,6 @@ class DoctorDetailView extends StatelessWidget {
   Widget _buildHeader(BuildContext context) {
     return Stack(
       children: [
-        // Doctor image full width
         Container(
           width: double.infinity,
           height: 300.h,
@@ -46,13 +49,10 @@ class DoctorDetailView extends StatelessWidget {
           child: Image.asset(
             doctor.imageAsset,
             fit: BoxFit.cover,
-            errorBuilder: (_, __, ___) => Container(
-              color: AppColors.primaryLight,
-              child: Icon(Icons.person, size: 80.sp, color: AppColors.primary),
-            ),
+            errorBuilder: (_, __, ___) =>
+                Icon(Icons.person, size: 80.sp, color: AppColors.primary),
           ),
         ),
-        // Back button
         Positioned(
           top: 48.h,
           left: 20.w,
@@ -73,7 +73,6 @@ class DoctorDetailView extends StatelessWidget {
             ),
           ),
         ),
-        // Title
         Positioned(
           top: 52.h,
           left: 0,
@@ -81,97 +80,17 @@ class DoctorDetailView extends StatelessWidget {
           child: Center(
             child: Text(
               doctor.name,
-              style: AppStyles.styleMedium14.copyWith(
-                fontSize: 15.sp,
-                color: AppColors.textPrimary,
-              ),
+              style: AppStyles.styleMedium14.copyWith(fontSize: 15.sp),
             ),
           ),
         ),
       ],
     );
-  }
-
-  Widget _buildDoctorInfo() {
-    return Padding(
-      padding: EdgeInsets.all(20.w),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                doctor.name,
-                style: AppStyles.styleSemiBold22.copyWith(fontSize: 18.sp),
-              ),
-              SizedBox(height: 4.h),
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
-                decoration: BoxDecoration(
-                  color: AppColors.primaryLight,
-                  borderRadius: BorderRadius.circular(20.r),
-                ),
-                child: Text(
-                  doctor.specialty,
-                  style: AppStyles.styleRegular12.copyWith(
-                    color: AppColors.primary,
-                  ),
-                ),
-              ),
-            ],
-          ),
-          Text(
-            doctor.fee,
-            style: AppStyles.styleSemiBold22.copyWith(
-              color: AppColors.primary,
-              fontSize: 18.sp,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildStats() {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20.w),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          _statItem('1000+', 'Patients', Icons.people_outline_rounded),
-          _divider(),
-          _statItem('10 Yrs', 'Experience', Icons.workspace_premium_outlined),
-          _divider(),
-          _statItem('4.5', 'Ratings', Icons.star_outline_rounded),
-        ],
-      ),
-    );
-  }
-
-  Widget _statItem(String value, String label, IconData icon) {
-    return Column(
-      children: [
-        Icon(icon, color: AppColors.primary, size: 22.sp),
-        SizedBox(height: 4.h),
-        Text(value, style: AppStyles.styleSemiBold22.copyWith(fontSize: 14.sp)),
-        Text(
-          label,
-          style: AppStyles.styleRegular12.copyWith(
-            color: AppColors.textSecondary,
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _divider() {
-    return Container(width: 1, height: 50.h, color: AppColors.border);
   }
 
   Widget _buildAbout() {
     return Padding(
-      padding: EdgeInsets.all(20.w),
+      padding: EdgeInsets.symmetric(horizontal: 20.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -189,45 +108,6 @@ class DoctorDetailView extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-
-  Widget _buildWorkingTime() {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20.w),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Working Time',
-            style: AppStyles.styleSemiBold22.copyWith(fontSize: 16.sp),
-          ),
-          SizedBox(height: 12.h),
-          _workingRow('Monday', '09:00 - 12:00'),
-          SizedBox(height: 8.h),
-          _workingRow('Friday', '12:00 - 16:00'),
-          SizedBox(height: 8.h),
-          _workingRow('Saturday', '09:00 - 12:00'),
-        ],
-      ),
-    );
-  }
-
-  Widget _workingRow(String day, String time) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          day,
-          style: AppStyles.styleMedium14.copyWith(
-            color: AppColors.textSecondary,
-          ),
-        ),
-        Text(
-          time,
-          style: AppStyles.styleMedium14.copyWith(color: AppColors.textPrimary),
-        ),
-      ],
     );
   }
 
