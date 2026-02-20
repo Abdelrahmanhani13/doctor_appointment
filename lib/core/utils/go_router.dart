@@ -1,10 +1,15 @@
 import 'package:doctor_appointment/core/widgets/bottom_navigation_bar.dart';
+import 'package:doctor_appointment/features/appointment/presentation/views/appointment_success_view.dart';
+import 'package:doctor_appointment/features/appointment/presentation/views/new_appointment_view.dart';
+import 'package:doctor_appointment/features/appointment/presentation/views/patient_details_view.dart';
 import 'package:doctor_appointment/features/auth/presentation/views/login_view.dart';
 import 'package:doctor_appointment/features/auth/presentation/views/signup_view.dart';
 import 'package:doctor_appointment/features/calendar/presentation/views/calendar_view.dart';
+import 'package:doctor_appointment/features/doctor_details/presentation/views/doctor_details_view.dart';
 import 'package:doctor_appointment/features/favorite/presentation/views/favorite_view.dart';
 import 'package:doctor_appointment/features/home/presentation/views/category_detail_view.dart';
 import 'package:doctor_appointment/features/home/presentation/views/home_view.dart';
+import 'package:doctor_appointment/features/home/data/models/doctor_model.dart';
 import 'package:doctor_appointment/features/profile/presentation/views/profile_view.dart';
 import 'package:doctor_appointment/features/splash/presentation/views/splash_view.dart';
 import 'package:doctor_appointment/features/on_boarding_view/presentation/views/on_boarding_view.dart';
@@ -20,6 +25,11 @@ abstract class AppRouter {
   static const kCalendarView = '/calendarView';
   static const kProfileView = '/profileView';
   static const kCategoryDetailsView = '/categoryDetailsView';
+  static const kDoctorDetail = '/doctorDetail';
+  static const kNewAppointment = '/newAppointment';
+  static const kPatientDetails = '/patientDetails';
+  static const kAppointmentSuccess = '/appointmentSuccess';
+  static const kAppointmentsView = '/appointmentsView';
 
   static final router = GoRouter(
     routes: [
@@ -50,10 +60,31 @@ abstract class AppRouter {
       GoRoute(
         path: kCategoryDetailsView,
         builder: (context, state) {
-          // بنجيب الـ categoryName من الـ extra
           final name = state.extra as String? ?? 'Category';
           return CategoryDetailView(categoryName: name);
         },
+      ),
+      GoRoute(
+        path: kDoctorDetail,
+        builder: (context, state) {
+          final doctor = state.extra as DoctorModel;
+          return DoctorDetailsView(doctor: doctor);
+        },
+      ),
+      GoRoute(
+        path: kNewAppointment,
+        builder: (context, state) {
+          final doctor = state.extra as DoctorModel;
+          return NewAppointmentView(doctor: doctor);
+        },
+      ),
+      GoRoute(
+        path: kPatientDetails,
+        builder: (context, state) => const PatientDetailsView(),
+      ),
+      GoRoute(
+        path: kAppointmentSuccess,
+        builder: (context, state) => const AppointmentSuccessView(),
       ),
     ],
   );
