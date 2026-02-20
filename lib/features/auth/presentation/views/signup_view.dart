@@ -81,14 +81,17 @@ class SignUpView extends StatelessWidget {
                     isPassword: true,
                   ),
                   SizedBox(height: 20.h),
-                  CustomButton(
-                    height: 49.h,
-                    width: 328.w,
-                    text: 'Sign Up',
-                    onPressed: () {},
-                    buttonColor: const Color(0xff236DEC),
-                    textStyle: AppStyles.styleSemiBold16,
-                    circleSize: 10.r,
+                  Align(
+                    alignment: Alignment.center,
+                    child: CustomButton(
+                      height: 49.h,
+                      width: 328.w,
+                      text: 'Sign Up',
+                      onPressed: () {},
+                      buttonColor: const Color(0xff236DEC),
+                      textStyle: AppStyles.styleSemiBold16,
+                      circleSize: 10.r,
+                    ),
                   ),
                   SizedBox(height: 20.h),
                   Center(

@@ -66,16 +66,19 @@ class LoginView extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 20.h), // 30 → 20
-                  CustomButton(
-                    height: 49.h,
-                    width: 328.w,
-                    text: 'Login',
-                    onPressed: () {
-                      context.go(AppRouter.kRoot);
-                    },
-                    buttonColor: const Color(0xff236DEC),
-                    textStyle: AppStyles.styleSemiBold16,
-                    circleSize: 10.r,
+                  Align(
+                    alignment: Alignment.center,
+                    child: CustomButton(
+                      height: 49.h,
+                      width: 328.w,
+                      text: 'Login',
+                      onPressed: () {
+                        context.go(AppRouter.kRoot);
+                      },
+                      buttonColor: const Color(0xff236DEC),
+                      textStyle: AppStyles.styleSemiBold16,
+                      circleSize: 10.r,
+                    ),
                   ),
                   SizedBox(height: 24.h), // 48 → 24
                   CustomDivider(),
